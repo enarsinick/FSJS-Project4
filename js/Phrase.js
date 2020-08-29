@@ -21,4 +21,28 @@
             }
         }
      }
+
+     checkLetter(letter) {
+        let phraseArr = this.phrase.split('');
+        let match = false;
+        for (let i = 0; i < phraseArr.length; i++) {
+            if (letter === phraseArr[i]) {
+                match = true;
+            } 
+        }
+        if (match) {
+            return true;
+        } else {
+            return false;
+        }
+     }
+
+     showMatchedLetter(letter) {
+        const letters = document.querySelectorAll('.letter');
+        for (let i = 0; i < letters.length; i++) {
+            if (letter === letters[i].textContent) {
+                letters[i].classList.add('show');
+            }
+        }
+     }
  }

@@ -30,4 +30,56 @@ class Game {
         randomPhrase.addPhraseToDisplay();
         this.activePhrase = randomPhrase;
      }
+
+     checkForWin() {
+         const numOfLetters = document.querySelectorAll('.letter').length;
+         const numOfLettersShown = document.querySelectorAll('.show').length;
+         if (numOfLetters === numOfLettersShown) {
+            return true;
+         } else {
+             return false;
+         }
+     }
+
+     removeLife() {
+         let lives = document.querySelectorAll('.tries');
+         lives[this.missed].firstElementChild.src = 'images/lostHeart.png'
+         this.missed += 1;
+         if (this.missed === 5) {
+            this.gameOver(false);
+         }
+     }
+
+     gameOver(gameWon) {
+        const overlay = document.getElementById('overlay');
+        const overlayTitle = overlay.querySelector('h2');
+        const restartButton = document.getElementById('btn__reset');
+
+         if (!gameWon) {
+            overlayTitle.textContent = 'You Lose!';
+            overlay.classList.add('lose');
+            overlay.style.display = 'flex';
+            restartButton.textContent = 'Restart Game';
+         } else {
+            overlayTitle.textContent = 'You Win!';
+            overlay.classList.add('win');
+            overlay.style.display = 'flex';
+            restartButton.textContent = 'Restart Game';
+         }
+     }
+
+     handleInteraction(button) {
+         button.classList.add('chosen');
+         button.disabled = 'true';
+        if(!this.activePhrase.checkLetter(button.textContent)) {
+            button.classList.add('wrong');
+            this.removeLife();
+        } else {
+            this.activePhrase.showMatchedLetter(button.textContent);
+            if(this.checkForWin()) {
+                this.gameOver(true);
+            }
+        }
+     }
+
 }
