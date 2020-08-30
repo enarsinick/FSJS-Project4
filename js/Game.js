@@ -2,6 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+ // Game class creation
 class Game {
      constructor() {
          this.missed = 0;
@@ -9,6 +10,7 @@ class Game {
          this.activePhrase = null;
      }
 
+     // Creates 5 new instances of the phrase objects ready for the game
      createPhrases() {
          let phraseArray = [];
          phraseArray.push(new Phrase('thats the way the cookie crumbles'));
@@ -19,11 +21,13 @@ class Game {
          return phraseArray;
      }
 
+     // Returns a random phrase 
      getRandomPhrase() {
          let randomNum = Math.floor((Math.random() * this.phrases.length));
          return this.phrases[randomNum];
      }
 
+     // When called this removes the start screen, gets and adds a new phrase to the DOM ready to play the game
      startGame() {
         document.getElementById('overlay').style.display = 'none';
         let randomPhrase = this.getRandomPhrase();
@@ -31,6 +35,8 @@ class Game {
         this.activePhrase = randomPhrase;
      }
 
+     // Chekc if the game has been completed by comparing the number of letters on screen
+     // to the amount that have currently been shown, if they are equal then the game has been completed
      checkForWin() {
          const numOfLetters = document.querySelectorAll('.letter').length;
          const numOfLettersShown = document.querySelectorAll('.show').length;
@@ -41,6 +47,7 @@ class Game {
          }
      }
 
+     // Removes a life from the DOM, adds 1 to missed and if missed is equal to 5 then the game ends
      removeLife() {
          let lives = document.querySelectorAll('.tries');
          lives[this.missed].firstElementChild.src = 'images/lostHeart.png'
@@ -50,6 +57,7 @@ class Game {
          }
      }
 
+     // Checks to see if the player has won or lost, and then display relevant finish screen
      gameOver(gameWon) {
         const overlay = document.getElementById('overlay');
         const overlayTitle = overlay.querySelector('h2');
@@ -68,6 +76,8 @@ class Game {
          }
      }
 
+     // This method checks if the player guessed the correct letter, if not a life is removed
+     //  if they did then show the matched letter in the DOM and checks to see if they've won yet
      handleInteraction(button) {
          button.classList.add('chosen');
          button.disabled = 'true';
