@@ -1,6 +1,6 @@
 # OOP Game Show App
 
-A browser-based, word guessing game called Phrase Hunter. Using object oritentated vanilla Javscript to select a random phrase that is displayed on the web page and the user has to try and guess it using the on screen keyboard or their own keyboard. 
+A browser-based, word guessing game called Phrase Hunter. Using object orientated vanilla Javscript to select a random phrase that is displayed on the web page and the user has to try and guess it using the on screen keyboard or their own keyboard. 
 
 ---
 ### Notes for reviewer
