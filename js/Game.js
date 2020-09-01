@@ -79,17 +79,18 @@ class Game {
      // This method checks if the player guessed the correct letter, if not a life is removed
      //  if they did then show the matched letter in the DOM and checks to see if they've won yet
      handleInteraction(button) {
-         button.classList.add('chosen');
-         button.disabled = 'true';
-        if(!this.activePhrase.checkLetter(button.textContent)) {
-            button.classList.add('wrong');
-            this.removeLife();
-        } else {
-            this.activePhrase.showMatchedLetter(button.textContent);
-            if(this.checkForWin()) {
-                this.gameOver(true);
+         if (!button.disabled) {
+            button.disabled = 'true';
+            if(!this.activePhrase.checkLetter(button.textContent)) {
+                button.classList.add('wrong');
+                this.removeLife();
+            } else {
+                this.activePhrase.showMatchedLetter(button.textContent);
+                button.classList.add('chosen');
+                if(this.checkForWin()) {
+                    this.gameOver(true);
+                }
             }
-        }
+         }
      }
-
 }

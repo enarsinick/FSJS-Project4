@@ -7,7 +7,7 @@ let game = '';
 // Listens for click on start/restart button
 document.getElementById('btn__reset').addEventListener('click', () => {
     // If the game has already been played, refresh the page
-    if (game.missed > 0) { window.location.reload(true);}
+    if (game.activePhrase) { window.location.reload(true);}
     // Create new instance of the game object and call start game method
     game = new Game();
     game.startGame();
